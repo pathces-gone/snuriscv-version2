@@ -6,5 +6,5 @@ module clock_gating_module(
     output  o_clk
     );
 
-	assign o_clk   = i_clk & i_clock_en;
+    assign o_clk   = i_clk & i_clock_en;
 endmodule
