@@ -22,16 +22,25 @@ initial begin
 $finish;
 end
 
-// Read From Front-end Interface
+/*
+    (1) Read From Front-end Interface: mem or trace?
+        * runmodel ->Init:: I$, D$-> Run::DUT
+*/
 
 
-// Run module
-snurisc DUT(
+/*
+    (2) Run Core
+        * read/write I$ and D$
+*/
+snurisc Core(
     .i_reset            (reset),
     .i_clk				(clk		),
     .i_clock_en			(clock_en	)
 );
 
-// Write to Back-end Interface
+/*
+    (3) Write to Back-end Interface: mem or trace ?
+        * Run::DUT -> result trace compare 
+*/
 
 endmodule
