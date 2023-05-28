@@ -1,0 +1,80 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "CMake Build",
+        "type": "shell",
+        "command": "cmake CMakeLists.txt",
+        // "presentation": {
+        //   "reveal": "silent"
+        // },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "options": {
+            "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "CMake Clean",
+        "type": "shell",
+        "command": "make sim-clean; rm CMakeFiles -r; rm CMakeCache.txt cmake_install.cmake; rm Makefile",
+        "presentation": {
+          "reveal": "silent"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "options": {
+            "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Make sim",
+        "type": "shell",
+        "command": "make xelab",
+        // "presentation": {
+        //   "reveal": "silent"
+        // },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "options": {
+            "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Make sim-clean",
+        "type": "shell",
+        "command": "make sim-clean",
+        "presentation": {
+          "reveal": "silent"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "options": {
+            "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Show WAVE",
+        "type": "shell",
+        "command": "make xsim",
+        // "presentation": {
+        //   "reveal": "silent"
+        // },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "options": {
+            "cwd": "${workspaceFolder}"
+        }
+      }
+    ]
+}

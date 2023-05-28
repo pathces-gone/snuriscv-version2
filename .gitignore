@@ -1,0 +1,15 @@
+# CMake
+CMakeCache*
+CMakeFiles*
+Makefile*
+
+# Xilnx
+*xe*
+*xs* 
+*.wdb* 
+*trace* 
+*xv* 
+*we* 
+*.hbs 
+*.Xil
+*.str
