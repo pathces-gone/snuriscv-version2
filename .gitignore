@@ -2,6 +2,7 @@
 CMakeCache*
 CMakeFiles*
 Makefile*
+cmake_install.cmake
 
 # Xilnx
 *xe*

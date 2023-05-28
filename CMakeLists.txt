@@ -8,7 +8,16 @@ set(XILINX_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build)
 
 # Set project source files
 set(SOURCES
-    ${XILINX_OUTPUT_PATH}/../rtl/clock_gating_model.v 
+    # Common
+    ${XILINX_OUTPUT_PATH}/../rtl/common/clock_gating_module.v 
+
+    # Control
+
+    # Datapath
+    ${XILINX_OUTPUT_PATH}/../rtl/datapath/alu.v 
+
+    # Others
+    ${XILINX_OUTPUT_PATH}/../rtl/snuriscv.v
     ${XILINX_OUTPUT_PATH}/../testbench/${TESTBENCH}.v
 ) 
 
