@@ -9,8 +9,8 @@
 
 module dcache 
 #(
-	parameter AWIDTH = 32,
-	parameter DWIDTH = 32,
+    parameter AWIDTH = 32,
+    parameter DWIDTH = 32,
     parameter LOG2_MEM_SIZE = 8,
     parameter MEM_SIZE = 2<<LOG2_MEM_SIZE
 )
