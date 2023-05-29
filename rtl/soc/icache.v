@@ -14,20 +14,21 @@ module icache
     parameter MEM_SIZE = 2<<LOG2_MEM_SIZE
 )
 (
-    input i_reset,
-    input i_clk,
-    input i_mem_rq,
-    input i_rnw,
+    input             i_reset,
+    input             i_clk,
+    input             i_mem_rq,
+    input             i_rnw,
     input [WIDTH-1:0] i_pc,
-    inout [WIDTH-1:0] i_data
+    input [WIDTH-1:0] i_data,
+    output[WIDTH-1:0] o_data
 );
 
 `ifndef CONFIGURE_SYNTHESIS
     reg  [WIDTH-1:0]        mem [MEM_SIZE-1:0];
     wire [LOG2_MEM_SIZE:0]  index;
 
-    assign index = i_pc>>2;
-    assign data  = (i_mem_rq & i_rnw) ? mem[index]: 32'hx;
+    assign index  = i_pc>>2;
+    assign o_data = (i_mem_rq & i_rnw) ? mem[index]: 32'hx;
 
     // Reference : ${workspace}/ref_c/README.md
     always @(posedge i_clk) begin

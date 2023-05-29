@@ -5,3 +5,9 @@
 * Description: This module is snurisc-core module, which is fabricated Datapath and control-logic.
 */
 `timescale 1ns / 1ps
+
+module snurisc_core
+(
+);
+    
+endmodule

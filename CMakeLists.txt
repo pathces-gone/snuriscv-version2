@@ -16,12 +16,15 @@ set(SOURCES
     ${XILINX_OUTPUT_PATH}/../rtl/soc/control/control_logic.v 
 
     # Datapath
+    ${XILINX_OUTPUT_PATH}/../rtl/soc/datapath/opcode_decoder.v 
+    ${XILINX_OUTPUT_PATH}/../rtl/soc/datapath/pcgen.v 
     ${XILINX_OUTPUT_PATH}/../rtl/soc/datapath/alu.v 
 
 
     # SoC
     ${XILINX_OUTPUT_PATH}/../rtl/soc/dcache.v 
     ${XILINX_OUTPUT_PATH}/../rtl/soc/icache.v 
+    ${XILINX_OUTPUT_PATH}/../rtl/soc/frontend.v 
     ${XILINX_OUTPUT_PATH}/../rtl/soc/snurisc_core.v 
 
     # Others
@@ -38,4 +41,5 @@ endif()
 
 if (DEBUG_MODE)
     add_definitions(-DCONFIGURE_DEBUG)
+        #add_definitions(-DCONFIGURE_DEBUG_FRONTEND)
 endif()

@@ -16,3 +16,10 @@
 `define FN_SUB  2'b0110
 `define FN_AND  2'b0000
 `define FN_OR   2`b0001
+
+// Frontend
+`define INITIAL_PC_VALUE 32'b0
+
+`define PC_SEL_STATE_ADD         2'b10
+`define PC_SEL_STATE_BRANCH_JUMP 2'b01
+`define PC_SEL_STATE_REG_JUMP    2'b00

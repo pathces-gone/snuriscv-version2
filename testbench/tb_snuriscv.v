@@ -29,10 +29,9 @@ end
 
 // (2) Run Core
 //     * read/write I$ and D$
-snurisc Core(
+snurisc DUT(
     .i_reset(reset),
-    .i_clk(clk),
-    .i_clock_en(clock_en)
+    .i_clk(clk)
 );
 
 // (3) Write to Back-end Interface     : mem or trace ?
