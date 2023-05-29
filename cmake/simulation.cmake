@@ -1,19 +1,19 @@
 # Vivado Simnulation
-message("${VIVADO_PATH}/bin/xvlog ${SOURCES}")
+#message("${VIVADO_PATH}/bin/xvlog ${SOURCES}  ${XILINX_DEFINE}")
 add_custom_target(xvlog
-    COMMAND ${VIVADO_PATH}/bin/xvlog ${SOURCES}
+    COMMAND ${VIVADO_PATH}/bin/xvlog ${SOURCES} ${XILINX_DEFINE}
     DEPENDS ${SOURCES} ${CONSTRAINTS}
     WORKING_DIRECTORY ${XILINX_OUTPUT_PATH}
 )
 
-message("${VIVADO_PATH}/bin/xelab ${TESTBENCH} -debug wave -s ${TESTBENCH}")
+# message("${VIVADO_PATH}/bin/xelab ${TESTBENCH} -debug wave -s ${TESTBENCH}")
 add_custom_target(xelab
     COMMAND ${VIVADO_PATH}/bin/xelab ${TESTBENCH} -debug wave -s ${TESTBENCH}
     DEPENDS ${SOURCES} ${CONSTRAINTS} xvlog
     WORKING_DIRECTORY ${XILINX_OUTPUT_PATH}
 )
 
-message("${VIVADO_PATH}/bin/xvlog ${TESTBENCH} -gui -wdb simulate_xsim_${TESTBENCH}.wdb")
+# message("${VIVADO_PATH}/bin/xvlog ${TESTBENCH} -gui -wdb simulate_xsim_${TESTBENCH}.wdb")
 add_custom_target(xsim
     COMMAND ${VIVADO_PATH}/bin/xsim ${TESTBENCH} -gui -wdb simulate_xsim_${TESTBENCH}.wdb
     DEPENDS ${SOURCES} ${CONSTRAINTS} xelab

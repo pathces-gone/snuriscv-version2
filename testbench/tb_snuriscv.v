@@ -2,23 +2,17 @@
 
 module tb_snuriscv;
 reg clk;
-reg clock_en;
 reg reset;
 
 always
-    #10 clk = ~clk;
+    #5 clk = ~clk;
  
 initial begin
-    reset<= 0;
-    clk<= 0;
-    clock_en<= 0;
-# 50
     reset<= 1;
-# 100
-    clock_en<= 1;
-# 100
-    clock_en<= 0;
-# 100
+    clk<= 0;
+# 50
+    reset<= 0;
+# 1000
 $finish;
 end
 
@@ -29,7 +23,7 @@ end
 
 // (2) Run Core
 //     * read/write I$ and D$
-snurisc DUT(
+snurisc_top DUT(
     .i_reset(reset),
     .i_clk(clk)
 );

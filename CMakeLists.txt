@@ -5,8 +5,11 @@ project(SNURISCVProject)
 set(VIVADO_PATH "/home/evan/vivado2022.2/Vivado/2022.2")
 set(TESTBENCH   "tb_snuriscv")
 set(XILINX_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build)
+set(CACHE SYNTHESIS  false)
+set(CACHE DEBUG_MODE true)
 
 # Set project source files
+set(XILINX_DEFINE)
 set(SOURCES
     # Common
     ${XILINX_OUTPUT_PATH}/../rtl/common/definitions.vh 
@@ -32,14 +35,16 @@ set(SOURCES
     ${XILINX_OUTPUT_PATH}/../testbench/${TESTBENCH}.v
 ) 
 
+if (DEBUG_MODE)
+    message("DEBUG_MODE")
+    set(XILINX_DEFINE ${XILINX_DEFINE} -d CONFIGURE_DEBUG)
+    set(XILINX_DEFINE ${XILINX_DEFINE} -d CONFIGURE_DEBUG_FRONTEND)
+endif()
+
 if (SYNTHESIS)
     include(cmake/synthesis.cmake)
-    add_definitions(-DCONFIGURE_SYNTHESIS)
+    set(XILINX_DEFINE ${XILINX_DEFINE} -d CONFIGURE_SYNTHESIS)
 else()
     include(cmake/simulation.cmake)
 endif()
 
-if (DEBUG_MODE)
-    add_definitions(-DCONFIGURE_DEBUG)
-        #add_definitions(-DCONFIGURE_DEBUG_FRONTEND)
-endif()

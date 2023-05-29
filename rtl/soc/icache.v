@@ -9,22 +9,23 @@
 
 module icache
 #(
-    parameter WIDTH = 32,
-    parameter LOG2_MEM_SIZE = 10,
+    parameter AWIDTH = 32,
+    parameter DWIDTH =AWIDTH,
+    parameter LOG2_MEM_SIZE = 8,
     parameter MEM_SIZE = 2<<LOG2_MEM_SIZE
 )
 (
-    input             i_reset,
-    input             i_clk,
-    input             i_mem_rq,
-    input             i_rnw,
-    input [WIDTH-1:0] i_pc,
-    input [WIDTH-1:0] i_data,
-    output[WIDTH-1:0] o_data
+    input              i_reset,
+    input              i_clk,
+    input              i_mem_rq,
+    input              i_rnw,
+    input [AWIDTH-1:0] i_pc,
+    input [DWIDTH-1:0] i_data,
+    output[DWIDTH-1:0] o_data
 );
 
 `ifndef CONFIGURE_SYNTHESIS
-    reg  [WIDTH-1:0]        mem [MEM_SIZE-1:0];
+    reg  [DWIDTH-1:0]       mem [MEM_SIZE-1:0];
     wire [LOG2_MEM_SIZE:0]  index;
 
     assign index  = i_pc>>2;
@@ -51,6 +52,15 @@ module icache
             if(i_mem_rq & !i_rnw) mem[index] <= i_data;        
         end
     end
+
+    `ifdef CONFIGURE_DEBUG
+        // Debug wire
+        wire [DWIDTH-1:0] db_r0 = mem[0];
+        wire [DWIDTH-1:0] db_r1 = mem[1];
+        wire [DWIDTH-1:0] db_r2 = mem[2];
+        wire [DWIDTH-1:0] db_r3 = mem[3];
+        wire [DWIDTH-1:0] db_r4 = mem[4];
+    `endif
 `else
     // FPGA
 `endif

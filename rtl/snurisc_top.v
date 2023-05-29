@@ -7,7 +7,7 @@
 */
 `timescale 1ns / 1ps
 
-module snurisc
+module snurisc_top
 #(
     parameter AWIDTH=32,
     parameter DWIDTH=AWIDTH,
@@ -18,22 +18,17 @@ module snurisc
     input i_reset
 );
 
-`ifndef CONFIGURE_DEBUG_FRONTEND
     wire frontend_alu_not_taken;
     wire frontend_icache_rnw;
     wire frontend_icache_rq;
     wire [DWIDTH-1:0] frontend_rq_inst;
-`else
-    reg frontend_alu_not_taken;
-    reg frontend_icache_rnw;
-    reg frontend_icache_rq;
-    reg [DWIDTH-1:0] frontend_rq_inst;
-    always@(*) begin
-        frontend_alu_not_taken = 1;
-        frontend_icache_rnw    = 0;
-        frontend_icache_rq     = 1;
-        frontend_rq_inst       = 0;
-    end
+    wire [DWIDTH-1:0] inst_fetched;
+
+`ifdef CONFIGURE_DEBUG_FRONTEND
+    assign   frontend_alu_not_taken = 1'b1;
+    assign   frontend_icache_rnw    = 1'b1;
+    assign   frontend_icache_rq     = 1'b1;
+    assign   frontend_rq_inst       = 32'b0;
 `endif
 
     // 1. Frontend 
@@ -45,7 +40,7 @@ module snurisc
         .i_icache_rnw    (frontend_icache_rnw),
         .i_icache_rq     (frontend_icache_rq),
         .i_inst          (frontend_rq_inst),
-        .o_inst          (o_inst)
+        .o_inst          (inst_fetched)
     );
 
     // 2. sunrisc_core
