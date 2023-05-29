@@ -46,7 +46,9 @@ J type:
     jalr    rd rs1 imm12              14..12=0 6..2=0x19 1..0=3    
 ```
 
+>Reference: [https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf)
 
+---
 # Preset A:
 
 ## Scenario
